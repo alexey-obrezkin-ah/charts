@@ -42,6 +42,8 @@ service:
   type: ClusterIP
   port: 80
 
+containerPort: 80
+
 env: []
   # - name: EXAMPLE_ENV
   #   value: "example-value"
@@ -51,22 +53,46 @@ env: []
   #       name: my-secret
   #       key: password
 
+# Liveness probe configuration
+# Only one probe type (httpGet, exec, or tcpSocket) should be defined
 livenessProbe:
   enabled: true
+  # HTTP probe example (default)
   httpGet:
     path: /
     port: http
+  # TCP probe example - to use, set httpGet to null and uncomment the following:
+  # tcpSocket:
+  #   port: 8080
+  # Exec probe example - to use, set httpGet to null and uncomment the following:
+  # exec:
+  #   command:
+  #     - /bin/sh
+  #     - -c
+  #     - "redis-cli ping"
   initialDelaySeconds: 30
   periodSeconds: 10
   timeoutSeconds: 5
   successThreshold: 1
   failureThreshold: 3
 
+# Readiness probe configuration
+# Only one probe type (httpGet, exec, or tcpSocket) should be defined
 readinessProbe:
   enabled: true
+  # HTTP probe example (default)
   httpGet:
     path: /
     port: http
+  # TCP probe example - to use, set httpGet to null and uncomment the following:
+  # tcpSocket:
+  #   port: 8080
+  # Exec probe example - to use, set httpGet to null and uncomment the following:
+  # exec:
+  #   command:
+  #     - /bin/sh
+  #     - -c
+  #     - "redis-cli ping"
   initialDelaySeconds: 5
   periodSeconds: 10
   timeoutSeconds: 5

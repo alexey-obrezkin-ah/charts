@@ -34,9 +34,16 @@ The following table lists the main configurable parameters:
 | `imagePullSecrets` | Image pull secrets | `[]` |
 | `podAnnotations` | Annotations for pods | `{}` |
 | `podLabels` | Labels for pods | `{}` |
+| `containerPort` | Container port | `80` |
 | `env` | Environment variables | `[]` |
 | `livenessProbe.enabled` | Enable liveness probe | `true` |
+| `livenessProbe.httpGet` | HTTP GET probe config (only one probe type should be set) | See values.yaml |
+| `livenessProbe.exec` | Exec probe config (only one probe type should be set) | `nil` |
+| `livenessProbe.tcpSocket` | TCP Socket probe config (only one probe type should be set) | `nil` |
 | `readinessProbe.enabled` | Enable readiness probe | `true` |
+| `readinessProbe.httpGet` | HTTP GET probe config (only one probe type should be set) | See values.yaml |
+| `readinessProbe.exec` | Exec probe config (only one probe type should be set) | `nil` |
+| `readinessProbe.tcpSocket` | TCP Socket probe config (only one probe type should be set) | `nil` |
 | `service.type` | Service type | `ClusterIP` |
 | `service.port` | Service port | `80` |
 | `serviceAccount.create` | Create service account | `true` |
@@ -64,6 +71,7 @@ env:
 
 ### Custom Health Checks
 
+HTTP probe example:
 ```yaml
 livenessProbe:
   enabled: true
@@ -78,6 +86,31 @@ readinessProbe:
   httpGet:
     path: /ready
     port: http
+  initialDelaySeconds: 10
+  periodSeconds: 5
+```
+
+TCP Socket probe example:
+```yaml
+livenessProbe:
+  enabled: true
+  httpGet: null
+  tcpSocket:
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+```
+
+Exec probe example:
+```yaml
+readinessProbe:
+  enabled: true
+  httpGet: null
+  exec:
+    command:
+      - /bin/sh
+      - -c
+      - "redis-cli ping"
   initialDelaySeconds: 10
   periodSeconds: 5
 ```
