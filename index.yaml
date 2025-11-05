@@ -3,7 +3,7 @@ entries:
   helloworld:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-11-05T17:15:21.688098+02:00"
+    created: "2025-11-05T17:22:49.592911+02:00"
     description: A Helm chart for Kubernetes application deployment
     digest: d97438bc893d17f3505ca0af7f9ffc551c9b7b996b1c7b6930fd4208c307e43e
     name: helloworld
@@ -11,4 +11,4 @@ entries:
     urls:
     - https://alexey-obrezkin-ah.github.io/charts/helloworld-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-05T17:15:21.687684+02:00"
+generated: "2025-11-05T17:22:49.592404+02:00"
