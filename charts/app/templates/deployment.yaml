@@ -47,12 +47,10 @@ spec:
           {{- if .Values.livenessProbe.httpGet }}
           httpGet:
             {{- toYaml .Values.livenessProbe.httpGet | nindent 12 }}
-          {{- end }}
-          {{- if .Values.livenessProbe.exec }}
+          {{- else if .Values.livenessProbe.exec }}
           exec:
             {{- toYaml .Values.livenessProbe.exec | nindent 12 }}
-          {{- end }}
-          {{- if .Values.livenessProbe.tcpSocket }}
+          {{- else if .Values.livenessProbe.tcpSocket }}
           tcpSocket:
             {{- toYaml .Values.livenessProbe.tcpSocket | nindent 12 }}
           {{- end }}
@@ -67,12 +65,10 @@ spec:
           {{- if .Values.readinessProbe.httpGet }}
           httpGet:
             {{- toYaml .Values.readinessProbe.httpGet | nindent 12 }}
-          {{- end }}
-          {{- if .Values.readinessProbe.exec }}
+          {{- else if .Values.readinessProbe.exec }}
           exec:
             {{- toYaml .Values.readinessProbe.exec | nindent 12 }}
-          {{- end }}
-          {{- if .Values.readinessProbe.tcpSocket }}
+          {{- else if .Values.readinessProbe.tcpSocket }}
           tcpSocket:
             {{- toYaml .Values.readinessProbe.tcpSocket | nindent 12 }}
           {{- end }}
